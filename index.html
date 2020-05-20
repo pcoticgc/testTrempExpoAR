@@ -17,7 +17,8 @@
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#e9b938">  
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="apple-mobile-web-app-capable" content="yes">
   </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -130,8 +131,19 @@
   		   <a-entity mixin="propertiesVerdU" obj-model="obj: #verdUrba-obj; mtl: #verdUrba-mtl "></a-entity>
 		</a-marker>
         <!--14 Video comparador litoral-->
-        <a-marker type="pattern" preset="custom" url="data/pattern-markerLiroralCat.patt">
-  		   <a-entity geometry="primitive: plane" scale="6 4 1" position="0 0 0" rotation="-90 0 0" material="src: #comparadorLitoral"></a-entity>
+        <a-marker class="liroralCat" type="pattern" preset="custom" url="data/pattern-markerLiroralCat.patt">
+			<!-- para ios la etiqueta video no puedo ponerla dentro de assets porque me sale desplazada y no puedo usar la etiqueta entity e de usar a-video--> 
+			<video id="mivideo" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted src="video/ecosistemaLitoral.mp4"></video>
+			<a-video src="#mivideo" scale="2 1 1" position="0 0 0" rotation="270 0 0" ></a-video>
+			<script> 
+				var m = document.querySelector(".liroralCat")
+				m.addEventListener("markerFound", (e)=>{
+				document.querySelector('#mivideo').play();
+				})
+				m.addEventListener("markerLost", (e)=>{
+				document.querySelector('#mivideo').pause();
+				})
+			</script>          
 		</a-marker>
   	    <a-entity camera></a-entity>
 	</a-scene>
