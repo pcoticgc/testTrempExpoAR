@@ -16,8 +16,9 @@
      <!--position ="x z y"-->
     <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
         <a-assets>
-		   <!-- 01 Video ploma de Ebre -->		   
+		   <!-- 01 Video ploma de Ebre 	   
 		   <a-video id="plomaEbre" source src="video/plomaDeEbre.mp4" type="video/mp4" preload="auto" ></a-video>
+		   -->	
 		   <!--02 3D model decaiment-->
            <a-asset-item id="sentinelDeca-obj" src="models/sentinelDeca.obj"></a-asset-item>
            <a-asset-item id="sentinelDeca-mtl" src="models/sentinelDeca.mtl"></a-asset-item>
@@ -69,10 +70,17 @@
 		   <!--14 Video comparador litoral-->	   
 		   <!-- <a-video id="comparadorLitoral" source src="video/ecosistemaLitoral.mp4" type="video/mp4" preload="auto" ></a-video> -->
         </a-assets>
-        <!--01 Video ploma de Ebre-->
-        <a-marker type="pattern" preset="custom" url="data/pattern-markerPlomaEbre.patt">
-  		   <a-entity geometry="primitive: plane" scale="6 4 1" position="0 0 0" rotation="-90 0 0" material="src: #plomaEbre"></a-entity>
+		<!--01 Video ploma de Ebre-->
+		<a-marker type="pattern" preset="custom" url="data/pattern-markerPlomaEbre.patt">
+			<video id="mivideoPEbre" autoplay loop="true" muted src="video/plomaDeEbre.mp4"></video>
+			<a-video src="#mivideoPEbre" scale="6 4 1" position="0 0 0" rotation="-90 0 0" ></a-video>
+			<script> 
+			  document.querySelector('#mivideoPEbre').play(); 
+			</script>
 		</a-marker>
+        <!-- <a-marker type="pattern" preset="custom" url="data/pattern-markerPlomaEbre.patt">
+  		   <a-entity geometry="primitive: plane" scale="6 4 1" position="0 0 0" rotation="-90 0 0" material="src: #plomaEbre"></a-entity>
+		</a-marker> -->
 		<!--02 3D model decaiment-->
 		<a-marker type="pattern" preset="custom" url="data/pattern-markerDe.patt">
   		   <a-entity mixin="propertiesSD" obj-model="obj: #sentinelDeca-obj; mtl: #sentinelDeca-mtl "></a-entity>
@@ -122,8 +130,15 @@
   		   <a-entity mixin="propertiesVerdU" obj-model="obj: #verdUrba-obj; mtl: #verdUrba-mtl "></a-entity>
 		</a-marker>
         <!--14 Video comparador litoral-->
-		<a-marker type="pattern" preset="custom" url="data/pattern-markerLiroralCat.patt">
+		<!-- <a-marker type="pattern" preset="custom" url="data/pattern-markerLiroralCat.patt">
 			<a-video id="comparadorLitoral" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted source src="video/ecosistemaLitoral.mp4" type="video/mp4" preload="auto" scale="6 4 1" position="0 0 0" rotation="-90 0 0"></a-video>
+		</a-marker> -->
+		<a-marker type="pattern" preset="custom" url="data/pattern-markerLiroralCat.patt">
+			<video id="mivideoEcoLitoral" autoplay loop="true" muted src="video/ecosistemaLitoral.mp4"></video>
+			<a-video src="#mivideoEcoLitoral" scale="6 4 1" position="0 0 0" rotation="-90 0 0" ></a-video>
+			<script> 
+			  document.querySelector('#mivideoEcoLitoral').play(); 
+			</script>
 		</a-marker>
   	    <a-entity camera></a-entity>
 	</a-scene>
